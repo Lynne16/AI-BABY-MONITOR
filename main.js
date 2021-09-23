@@ -53,6 +53,7 @@ function draw(){
         document.getElementById("status").innerHTML="Status: Object Detected";
         //document.getElementById("object_no").innerHTML="Number of objects detected: "+ objects.length;
 
+
         for(var i=0; i < objects.length; i++){
             var r=random(255);
             var g=random(255);
@@ -64,19 +65,25 @@ function draw(){
             stroke(r,g,b);
             rect(objects[i].x,objects[i].y,objects[i].width,objects[i].height);
 
+            if(objects[i].label == 'person'){
+                document.getElementById("object_no").innerHTML="Baby Found";
+                alarm.stop();
+            }
+            else{
+                document.getElementById("object_no").innerHTML="Baby Not Found";
+                alarm.play();
+            }
+
         }
+
+        if(objects.lenght < 0){
+            document.getElementById("object_no").innerHTML="Baby Not Found";
+            alarm.play();
+        } 
     }
 
-  /*  if(objects[i].label ==){
-        document.getElementById("object_no").innerHTML="Baby Found";
-        alarm.stop();
-    }
-    else{
-        document.getElementById("object_no").innerHTML="Baby Not Found";
-        alarm.play();
-    }
 
-    if(objects.lenght < 0){
+   /* if(objects.lenght < 0){
         document.getElementById("object_no").innerHTML="Baby Not Found";
         alarm.play();
     } */
